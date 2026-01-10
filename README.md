@@ -25,7 +25,7 @@ curl -s https://raw.githubusercontent.com/actuallymentor/battery/main/setup.sh |
 ### 安装应用
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/BatteryManager.git
+git clone https://github.com/chenkaifu3/BatteryManager.git
 cd BatteryManager
 npm install
 ```
