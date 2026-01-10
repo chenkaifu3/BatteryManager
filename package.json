@@ -1,0 +1,12 @@
+{
+  "name": "battery-manager",
+  "version": "1.0.0",
+  "description": "macOS 电池管理工具 - 充电上限控制 & 历史记录",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {},
+  "author": "",
+  "license": "MIT"
+}

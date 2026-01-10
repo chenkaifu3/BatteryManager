@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电池管理</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🔋 电池管理</h1>
+            <p class="subtitle">macOS 充电控制 & 健康监测</p>
+        </header>
+
+        <!-- 电池状态卡片 -->
+        <div class="card battery-card">
+            <div class="battery-visual">
+                <div class="battery-body">
+                    <div class="battery-level" id="batteryLevel">
+                        <span class="battery-percent" id="batteryPercent">--</span>
+                    </div>
+                </div>
+                <div class="battery-tip"></div>
+            </div>
+            <div class="battery-status" id="chargingStatus">
+                <span class="status-icon">⚡</span>
+                <span class="status-text">检测中...</span>
+            </div>
+        </div>
+
+        <!-- 电池信息 -->
+        <div class="card info-card">
+            <h2>电池健康</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">循环次数</span>
+                    <span class="info-value" id="cycleCount">--</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">健康度</span>
+                    <span class="info-value" id="maxCapacity">--%</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">充电上限</span>
+                    <span class="info-value" id="chargeLimit">--%</span>
+                </div>
+            </div>
+            <div class="info-grid" style="margin-top: 12px;">
+                <div class="info-item">
+                    <span class="info-label">设计容量</span>
+                    <span class="info-value small" id="designCapacity">-- mAh</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">真实容量</span>
+                    <span class="info-value small" id="maxCapacityMah">-- mAh</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">健康度容量</span>
+                    <span class="info-value small" id="healthCapacity">-- mAh</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 充电控制 -->
+        <div class="card control-card">
+            <h2>充电控制</h2>
+            <div class="control-buttons">
+                <button class="btn btn-limit" onclick="copyChargeCommand(80)">
+                    <span class="btn-icon">🛡️</span>
+                    <span class="btn-text">限制 80%</span>
+                    <span class="btn-desc">复制命令</span>
+                </button>
+                <button class="btn btn-full" onclick="copyChargeCommand(100)">
+                    <span class="btn-icon">⚡</span>
+                    <span class="btn-text">完全充电</span>
+                    <span class="btn-desc">复制命令</span>
+                </button>
+            </div>
+            <p class="control-note">💡 点击按钮复制命令，粘贴到终端执行</p>
+        </div>
+
+        <!-- 使用统计 -->
+        <div class="card usage-card">
+            <h2>📊 使用统计（最近7天）</h2>
+            <div class="usage-table-container">
+                <table class="usage-table" id="usageTable">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>电池使用</th>
+                            <th>电源使用</th>
+                            <th>耗电%</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 历史记录 -->
+        <div class="card history-card">
+            <div class="history-header">
+                <h2>历史记录</h2>
+                <button class="btn-small" onclick="recordData()">📊 记录当前</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="historyChart"></canvas>
+            </div>
+            <div class="history-table-container">
+                <table class="history-table" id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>循环</th>
+                            <th>容量 (mAh)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer>
+            <p>基于 bclm 和 system_profiler 构建</p>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
