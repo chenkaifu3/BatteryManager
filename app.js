@@ -168,6 +168,7 @@ function updateChart(records) {
 
     const cycleData = recentRecords.map(r => r.cycleCount);
     const capacityData = recentRecords.map(r => r.maxCapacityMah || r.maxCapacity);
+    const realCapacityData = recentRecords.map(r => r.realCapacityMah || null);
 
     if (historyChart) {
         historyChart.destroy();
@@ -179,11 +180,20 @@ function updateChart(records) {
             labels: labels,
             datasets: [
                 {
-                    label: '当前容量 (mAh)',
+                    label: '健康度容量 (mAh)',
                     data: capacityData,
                     borderColor: '#00d68f',
                     backgroundColor: 'rgba(0, 214, 143, 0.1)',
                     fill: true,
+                    tension: 0.4,
+                    yAxisID: 'y'
+                },
+                {
+                    label: '真实容量 (mAh)',
+                    data: realCapacityData,
+                    borderColor: '#ff6b6b',
+                    backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                    fill: false,
                     tension: 0.4,
                     yAxisID: 'y'
                 },
