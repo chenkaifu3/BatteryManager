@@ -218,7 +218,8 @@ async function addRecord() {
         date: today,
         cycleCount: info.cycleCount,
         maxCapacity: info.maxCapacity,
-        maxCapacityMah: info.healthCapacityMah,  // 使用健康度计算容量
+        maxCapacityMah: info.healthCapacityMah,  // 健康度计算容量
+        realCapacityMah: info.maxCapacityMah,    // 真实容量
         designCapacityMah: info.designCapacityMah,
         stateOfCharge: info.stateOfCharge,
         timestamp: new Date().toISOString()

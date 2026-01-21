@@ -254,6 +254,7 @@ function updateTable(records) {
             <td>${r.date}</td>
             <td>${r.cycleCount}</td>
             <td>${r.maxCapacityMah || r.maxCapacity}</td>
+            <td>${r.realCapacityMah || '-'}</td>
         </tr>
     `).join('');
 }
